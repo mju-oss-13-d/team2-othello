@@ -27,13 +27,9 @@ struct move
 int position_evaluater(struct board board_evaluate);
 void board_io(struct board* board, int option);
 int drawboard(struct board* board_draw);
-// 게임판의 상황을 출력하는 함수
 int test_direction(struct board*board_check,int x,int y,int direction);
-// 입력한 좌표에 돌이 없다면 그 좌표에 돌을 놓을 수 있는지 테스트해서 놓을 수 있다면 0, 놓을 수 없다면 1
 int test_legalmove(struct board *board_check, int x,int y);
-// test_direction 함수를 연속으로 불러내면서 0, 1 의 값을 돌려주는 함수
 int legalmove_available(struct board*board_check1);
-// 이
 int beststrategy_entry(struct board *currentboard, struct move *bestmove, int depth);
 int beststrategy_search(struct board board_cache, int depth);
 void update(struct board* board_destiny, struct board* board_source, int x, int y);
@@ -53,14 +49,7 @@ int main(int argc, char*arg[])
 	/*end of declaration*/
 
 
-
-
-
-
-
-
 	/*initialization*/
-
 
 	masterboard.score_black=2;
 	masterboard.score_white=2;
@@ -75,9 +64,6 @@ int main(int argc, char*arg[])
 
 	}
 
-
-
-
 	masterboard.cells[3][3]=WHITE;
 	masterboard.cells[4][3]=BLACK;
 	masterboard.cells[3][4]=BLACK;
@@ -87,14 +73,32 @@ int main(int argc, char*arg[])
 
 	printf("Das Panzer by Luke Chen, at Mathcamp 2004\n\n"); /*credit*/
 	printf("윤오랑 수정이랑 자강이가 수정했대요~\n"); /*뻘소리*/
-	printf("CPU vs Player (1) or Player vs Player (2)");/*choose between the type of game*/
+	printf("CPU vs CPU (0) or CPU vs Player (1) or Player vs Player (2)");/*choose between the type of game*/
 
 	scanf("%d",&player);
 
-	while(player != 1 && player != 2)
+	if(player==3)
 	{
-		printf("1이나 2로 입력하십시오.");
-		scanf("%d", &player);
+		masterboard.score_black=0;
+		masterboard.score_white=0;
+		board_io(&masterboard,READ);
+		player=0;
+
+	}
+	else if(player==4)
+	{
+		masterboard.score_black=0;
+		masterboard.score_white=0;
+		board_io(&masterboard,0);
+		player=1;
+
+	}
+	else if(player==5)
+	{
+		masterboard.score_black=0;
+		masterboard.score_white=0;
+		board_io(&masterboard,0);
+		player=2;
 	}
 
 
